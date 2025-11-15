@@ -22,10 +22,10 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node init && react-scripts start",
     "server": "node server.js",
-    "dev": "concurrently \"npm run server\" \"npm start\"",
-    "build": "react-scripts build",
+    "dev": "node init && concurrently \"npm run server\" \"npm start\"",
+    "build": "node init && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
