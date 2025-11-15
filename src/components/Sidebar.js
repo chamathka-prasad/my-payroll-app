@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { 
-  faHome, faClipboardList, faUsers, faCalendarAlt, faWalking, 
+import {
+  faHome, faClipboardList, faUsers, faCalendarAlt, faWalking,
   faBuilding, faCog, faChevronLeft, faChevronDown, faArrowRight,
-  faArrowLeft 
+  faArrowLeft, faTimes
 } from '@fortawesome/free-solid-svg-icons';
-import './Sidebar.css'; 
+import './Sidebar.css';
 
-const Sidebar = ({ isOpen }) => {
+const Sidebar = ({ isOpen, onClose }) => {
   const [isEmployeeMenuOpen, setIsEmployeeMenuOpen] = useState(true);
 
   const getNavLinkClass = ({ isActive }) => 
@@ -22,7 +22,9 @@ const Sidebar = ({ isOpen }) => {
       {/* Updated Header with Icon */}
       <div className="sidebar-header d-flex justify-content-between align-items-center mb-3">
         <h5 className="sidebar-title mb-0">DART-PAYROLL</h5>
-        <FontAwesomeIcon icon={faArrowLeft} className="sidebar-header-icon" />
+        <button className="sidebar-close-btn" onClick={onClose} aria-label="Close sidebar">
+          <FontAwesomeIcon icon={faTimes} />
+        </button>
       </div>
       
       <ul className="nav flex-column flex-grow-1">

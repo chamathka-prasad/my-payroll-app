@@ -20,7 +20,7 @@ const Layout = () => {
         onClick={closeSidebar} 
       ></div>
 
-      <Sidebar isOpen={isSidebarOpen} />
+      <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
       
       <div className="main-content-column flex-grow-1 d-flex flex-column">
         <Navbar onMenuClick={toggleSidebar} />

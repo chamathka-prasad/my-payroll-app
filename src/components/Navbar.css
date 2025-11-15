@@ -11,6 +11,11 @@
   z-index: 1000;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
 }
 
 .custom-navbar .navbar-date {
@@ -25,6 +30,7 @@
   border-color: rgba(255, 255, 255, 0.3);
   color: var(--navbar-text);
   transition: all var(--transition-fast);
+  flex-shrink: 0;
 }
 
 .custom-navbar .btn-outline-light:hover {
@@ -32,6 +38,24 @@
   color: var(--navbar-text);
   border-color: rgba(255, 255, 255, 0.5);
   transform: scale(1.05);
+}
+
+/* Left side container */
+.custom-navbar > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 1;
+  min-width: 0;
+}
+
+/* Right side icons container */
+.custom-navbar > div:last-child {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  justify-content: flex-end;
 }
 
 /* Button style for clickable icons */
@@ -49,6 +73,7 @@
   height: 40px;
   transition: all var(--transition-fast);
   position: relative;
+  flex-shrink: 0;
 }
 
 .icon-button:hover {
@@ -176,6 +201,8 @@
 
 .profile-dropdown-wrapper {
   position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .profile-section {
@@ -212,7 +239,7 @@
   margin-top: 4px;
   min-width: 160px;
   z-index: 1001;
-  overflow: hidden;
+  overflow: visible;
   animation: slideDown var(--transition-fast);
 }
 
@@ -229,35 +256,120 @@
 
 .logout-dropdown-item {
   display: block;
-  padding: 12px 16px;
+  padding: 12px 20px;
   color: var(--text-primary);
   text-decoration: none;
   font-size: 0.9rem;
   white-space: nowrap;
   font-weight: 500;
   transition: all var(--transition-fast);
+  width: 100%;
+  text-align: left;
 }
 
 .logout-dropdown-item:hover {
   background: var(--bg-gradient-soft);
   color: var(--primary-color);
-  padding-left: 20px;
+  padding-left: 24px;
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+/* Medium screens */
+@media (max-width: 992px) {
   .custom-navbar {
-    height: auto;
-    padding: 0.75rem 1rem !important;
+    padding: 0.5rem 1.25rem !important;
   }
 
   .navbar-date {
-    font-size: 0.75rem !important;
+    font-size: 0.85rem !important;
+  }
+
+  .custom-navbar > div:last-child {
+    gap: 0.4rem;
   }
 
   .icon-button {
     width: 36px;
     height: 36px;
+  }
+
+  .profile-image-container {
+    width: 34px;
+    height: 34px;
+  }
+
+  .profile-user-icon {
+    font-size: 1.15em;
+  }
+}
+
+/* Small tablets - hide download icon */
+@media (max-width: 850px) {
+  .custom-navbar {
+    padding: 0.5rem 1rem !important;
+  }
+
+  .navbar-date {
+    font-size: 0.75rem !important;
+    max-width: 140px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .icon-button {
+    width: 34px;
+    height: 34px;
+  }
+
+  .profile-image-container {
+    width: 32px;
+    height: 32px;
+  }
+
+  .custom-navbar > div:last-child {
+    gap: 0.35rem;
+  }
+
+  /* Hide download icon */
+  .icon-button:nth-of-type(3) {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .custom-navbar {
+    height: 60px;
+    padding: 0.5rem 0.9rem !important;
+  }
+
+  .navbar-date {
+    font-size: 0.7rem !important;
+    max-width: 120px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .custom-navbar .btn-outline-light {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.9rem;
+  }
+
+  .icon-button {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+  }
+
+  .profile-image-container {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+  }
+
+  .profile-user-icon {
+    font-size: 1.05em;
   }
 
   .profile-details {
@@ -266,5 +378,174 @@
 
   .navbar-separator {
     display: none !important;
+  }
+
+  .profile-section {
+    padding: 4px 6px;
+    min-width: auto;
+  }
+
+  .profile-caret {
+    margin-left: 6px;
+    font-size: 0.8em;
+  }
+
+  .custom-navbar > div:last-child {
+    gap: 0.3rem;
+  }
+
+  .logout-dropdown-menu {
+    right: -10px;
+    min-width: 140px;
+  }
+
+  .logout-dropdown-item {
+    padding: 10px 16px;
+    font-size: 0.85rem;
+  }
+
+  .logout-dropdown-item:hover {
+    padding-left: 20px;
+  }
+
+  /* Hide grid icon */
+  .icon-button:nth-of-type(2) {
+    display: none;
+  }
+}
+
+/* Smaller phones - hide date */
+@media (max-width: 650px) {
+  .custom-navbar {
+    padding: 0.5rem 0.8rem !important;
+  }
+
+  /* Hide the date completely */
+  .navbar-date {
+    display: none;
+  }
+
+  .icon-button {
+    width: 30px;
+    height: 30px;
+  }
+
+  .profile-image-container {
+    width: 30px;
+    height: 30px;
+  }
+
+  .custom-navbar > div:last-child {
+    gap: 0.35rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .custom-navbar {
+    padding: 0.5rem 0.65rem !important;
+    height: 56px;
+  }
+
+  .custom-navbar .btn-outline-light {
+    padding: 0.35rem 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  .icon-button {
+    width: 28px;
+    height: 28px;
+    margin: 0 !important;
+  }
+
+  .icon-button.me-3 {
+    margin-right: 0.2rem !important;
+  }
+
+  .profile-image-container {
+    width: 28px;
+    height: 28px;
+    border-width: 1.5px;
+  }
+
+  .profile-user-icon {
+    font-size: 0.9em;
+  }
+
+  .profile-section {
+    padding: 2px 4px;
+    margin-left: 0 !important;
+  }
+
+  .profile-caret {
+    margin-left: 3px;
+  }
+
+  .notification-badge {
+    font-size: 0.55rem;
+    padding: 0.2em 0.35em;
+    min-width: 1.3em;
+  }
+
+  .custom-navbar > div:last-child {
+    gap: 0.25rem;
+  }
+
+  .logout-dropdown-menu {
+    right: -5px;
+    min-width: 110px;
+  }
+
+  .logout-dropdown-item {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+  }
+
+  .logout-dropdown-item:hover {
+    padding-left: 16px;
+  }
+}
+
+@media (max-width: 380px) {
+  .custom-navbar {
+    padding: 0.4rem 0.5rem !important;
+    height: 52px;
+  }
+
+  .custom-navbar .btn-outline-light {
+    padding: 0.3rem 0.45rem;
+    font-size: 0.8rem;
+  }
+
+  .icon-button {
+    width: 26px;
+    height: 26px;
+  }
+
+  .profile-image-container {
+    width: 26px;
+    height: 26px;
+  }
+
+  .profile-user-icon {
+    font-size: 0.85em;
+  }
+
+  .notification-badge {
+    font-size: 0.5rem;
+    padding: 0.15em 0.3em;
+  }
+
+  .custom-navbar > div:last-child {
+    gap: 0.2rem;
+  }
+
+  .logout-dropdown-menu {
+    right: 0;
+    min-width: 100px;
+  }
+
+  .logout-dropdown-item {
+    padding: 6px 10px;
+    font-size: 0.75rem;
   }
 }
