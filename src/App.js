@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout';
+import DashboardPage from './pages/DashboardPage';
+import EmployeePage from './pages/EmployeePage';
+import EmployeeRegistration from './pages/EmployeeRegistration'; // <-- 1. IMPORT THE NEW PAGE
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      {/* Routes WITH sidebar/navbar/footer */}
+      <Route path="/" element={<Layout />}>
+        <Route index element={<DashboardPage />} />
+        <Route path="employees" element={<EmployeePage />} />
+        {/* ... other pages ... */}
+      </Route>
+      
+      {/* 2. ADD NEW ROUTE (no sidebar/navbar/footer) */}
+      <Route path="/register-employee" element={<EmployeeRegistration />} />
+    </Routes>
   );
 }
 

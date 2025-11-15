@@ -1,0 +1,276 @@
+/* Main container with theme support */
+.employee-page-container {
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  font-size: 0.9rem;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-normal);
+}
+
+/* Page header */
+.page-title {
+  color: var(--text-primary);
+  font-weight: bold;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+}
+.add-employee-btn {
+  color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+  font-size: 0.8rem;
+  font-weight: bold;
+  transition: all var(--transition-fast);
+}
+.add-employee-btn:hover {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Search and List boxes */
+.search-box, .list-box {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  background-color: var(--card-bg);
+  transition: all var(--transition-normal);
+}
+.section-title {
+  color: var(--text-primary);
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+/* Buttons inside the list box */
+.list-box-btn {
+  font-size: 0.8rem;
+  padding: 0.2rem 0.5rem;
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+  transition: all var(--transition-fast);
+}
+.list-box-btn:hover {
+  background-color: var(--primary-color);
+  color: white;
+  transform: translateY(-1px);
+}
+
+/* Smaller form controls */
+.employee-page-container .form-select-sm,
+.employee-page-container .pagination-sm .page-link {
+  font-size: 0.8rem;
+}
+.employee-page-container span {
+  font-size: 0.8rem;
+}
+
+/* --- Table Styles --- */
+
+/* Wrapper for horizontal scroll - contains everything that should scroll together */
+.list-box {
+  position: relative;
+}
+
+/* Table wrapper that handles horizontal scrolling */
+.table-wrapper {
+  overflow-x: auto;
+  overflow-y: visible;
+  padding-bottom: 8px; /* Add space between table and horizontal scrollbar */
+}
+
+/* Width definitions for columns */
+.col-emp-no { width: 100px; min-width: 100px; max-width: 100px; }
+.col-epf-no { width: 100px; min-width: 100px; max-width: 100px; }
+.col-display-name { width: 150px; min-width: 150px; max-width: 150px; }
+.col-name { width: 120px; min-width: 120px; max-width: 120px; }
+.col-nic { width: 110px; min-width: 110px; max-width: 110px; }
+.col-mobile { width: 120px; min-width: 120px; max-width: 120px; }
+.col-address { width: 180px; min-width: 180px; max-width: 180px; }
+.col-designation { width: 120px; min-width: 120px; max-width: 120px; }
+.col-salary { width: 110px; min-width: 110px; max-width: 110px; }
+
+/* Inner container for headers and table */
+.table-content-wrapper {
+  min-width: 2080px; /* Total width: 100+100+150+(120*3)+110+(120*2)+180+120+(110*7) = 2080px */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Static Header Row */
+.emp-table-header {
+  font-size: 0.75rem;
+  font-weight: bold;
+  background: var(--bg-gradient);
+  border: 1px solid var(--border-color);
+  border-bottom: none;
+  padding: 0;
+  width: 2080px;
+  color: white;
+  transition: all var(--transition-normal);
+  display: flex;
+  flex-shrink: 0;
+}
+.emp-table-header > div {
+  padding: 0.5rem 5px;
+  text-transform: uppercase;
+  color: white;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
+}
+.emp-table-header > div:last-child {
+  border-right: none;
+}
+
+/* Scrollable Container */
+.table-scroll-container {
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--card-bg);
+  padding-right: 8px; /* Add space between scrollbar and table */
+}
+
+/* Table inside the scroller */
+.table-scroll-container .table {
+  width: 2080px;
+  min-width: 2080px;
+  margin-bottom: 0;
+  font-size: 0.8rem;
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+  table-layout: fixed;
+}
+
+.table-scroll-container .table td {
+  padding: 0.4rem 0.5rem;
+  vertical-align: middle;
+  white-space: nowrap;
+  border-color: var(--border-color);
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Table row hover effect */
+.table-scroll-container .table tbody tr:hover td {
+  background-color: var(--bg-hover) !important;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+/* Striped rows with theme colors */
+.table-scroll-container .table-striped tbody tr:nth-of-type(odd) td {
+  background-color: var(--bg-primary);
+}
+
+.table-scroll-container .table-striped tbody tr:nth-of-type(even) td {
+  background-color: var(--bg-secondary);
+}
+
+/* Custom scrollbar for table wrapper horizontal scroll */
+.table-wrapper::-webkit-scrollbar {
+  height: 10px;
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+  background: var(--bg-tertiary);
+  border-radius: 5px;
+  margin: 0 4px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 5px;
+  border: 2px solid var(--bg-tertiary);
+}
+
+.table-wrapper::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark);
+}
+
+/* Custom scrollbar for table scroll container */
+.table-scroll-container::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.table-scroll-container::-webkit-scrollbar-track {
+  background: var(--bg-tertiary);
+  border-radius: 5px;
+  margin: 4px 0;
+}
+
+.table-scroll-container::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 5px;
+  border: 2px solid var(--bg-tertiary);
+}
+
+.table-scroll-container::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .employee-page-container {
+    padding: 1rem;
+  }
+
+  .page-title {
+    font-size: 1rem;
+  }
+
+  .list-box {
+    padding: 0.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .employee-page-container {
+    padding: 0.75rem;
+  }
+
+  .search-box, .list-box {
+    padding: 0.5rem;
+  }
+
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 0.5rem;
+  }
+
+  .add-employee-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .employee-page-container {
+    padding: 0.5rem;
+  }
+
+  .list-box-btn {
+    font-size: 0.7rem;
+    padding: 0.15rem 0.4rem;
+  }
+
+  .emp-table-header {
+    font-size: 0.65rem;
+    padding: 0.4rem;
+  }
+
+  .table-scroll-container .table {
+    font-size: 0.7rem;
+  }
+}
