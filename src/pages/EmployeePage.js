@@ -5,28 +5,6 @@ import { faDownload } from '@fortawesome/free-solid-svg-icons';
 import { getEmployees, downloadEmployeesJSON } from '../utils/employeeStorage';
 import './EmployeePage.css';
 
-// A new component for the static table headers (used above and below the scrollable list)
-const TableHeader = () => (
-  <div className="emp-table-header d-flex text-center">
-    <div className="col-emp-no">EMPLOYEE NO</div>
-    <div className="col-epf-no">EPF NO</div>
-    <div className="col-display-name">DISPLAY NAME</div>
-    <div className="col-name">FIRST NAME</div>
-    <div className="col-name">MIDDLE NAME</div>
-    <div className="col-name">LAST NAME</div>
-    <div className="col-nic">NIC</div>
-    <div className="col-mobile">MOBILE</div>
-    <div className="col-mobile">MOBILE 2</div>
-    <div className="col-address">ADDRESS</div>
-    <div className="col-designation">DESIGNATION</div>
-    <div className="col-salary">BASIC SALARY</div>
-    <div className="col-salary">DAILY SALARY</div>
-    <div className="col-salary">BUDGET ALLOWANCE</div>
-    <div className="col-salary">INCENTIVE</div>
-    <div className="col-salary">SPECIAL INCENTIVE</div>
-    <div className="col-salary">SERVICE</div>
-  </div>
-);
 
 const EmployeePage = () => {
   const navigate = useNavigate();
@@ -126,59 +104,70 @@ const EmployeePage = () => {
 
         {/* Table wrapper for horizontal scrolling */}
         <div className="table-wrapper">
-          <div className="table-content-wrapper">
-            {/* Static Table Header (Top) */}
-            <TableHeader />
-
-            {/* Scrollable Table Body */}
-            <div className="table-scroll-container">
-              <table className="table table-bordered table-striped text-center align-middle">
-                {/* The table header is intentionally omitted, as it's now static above */}
-                <tbody>
-                  {filteredEmployees.length > 0 ? (
-                    filteredEmployees.map((employee) => (
-                      <tr key={employee.id}>
-                        <td className="col-emp-no">{employee.empNo || '-'}</td>
-                        <td className="col-epf-no">{employee.epfNumber || '-'}</td>
-                        <td className="col-display-name">{employee.displayName || '-'}</td>
-                        <td className="col-name">{employee.firstName || '-'}</td>
-                        <td className="col-name">{employee.middleName || '-'}</td>
-                        <td className="col-name">{employee.lastName || '-'}</td>
-                        <td className="col-nic">{employee.nic || '-'}</td>
-                        <td className="col-mobile">{employee.mobile || '-'}</td>
-                        <td className="col-mobile">{employee.mobile2 || '-'}</td>
-                        <td className="col-address">{employee.address || '-'}</td>
-                        <td className="col-designation">{employee.designation || '-'}</td>
-                        <td className="col-salary">{employee.salaryComponents?.basicSalary || '0.00'}</td>
-                        <td className="col-salary">
-                          {employee.salaryStatus === 'daily'
-                            ? (parseFloat(employee.salaryComponents?.basicSalary || 0) / 30).toFixed(2)
-                            : '0.00'}
-                        </td>
-                        <td className="col-salary">{employee.salaryComponents?.budgetAllowance || '0.00'}</td>
-                        <td className="col-salary">{employee.salaryComponents?.incentive || '0.00'}</td>
-                        <td className="col-salary">{employee.salaryComponents?.specialIncentive || '0.00'}</td>
-                        <td className="col-salary">{employee.salaryComponents?.serviceIncentive || '0.00'}</td>
-                      </tr>
-                    ))
-                  ) : (
-                    <tr>
-                      <td colSpan="17" className="text-center py-5">
-                        <div>
-                          <p className="mb-2">No employees found</p>
-                          <button className="btn btn-primary btn-sm" onClick={handleAddEmployee}>
-                            Add First Employee
-                          </button>
-                        </div>
+          <div className="table-scroll-container">
+            <table className="table table-bordered table-striped text-center align-middle">
+              <thead className="emp-table-header">
+                <tr>
+                  <th className="col-emp-no">EMPLOYEE NO</th>
+                  <th className="col-epf-no">EPF NO</th>
+                  <th className="col-display-name">DISPLAY NAME</th>
+                  <th className="col-name">FIRST NAME</th>
+                  <th className="col-name">MIDDLE NAME</th>
+                  <th className="col-name">LAST NAME</th>
+                  <th className="col-nic">NIC</th>
+                  <th className="col-mobile">MOBILE</th>
+                  <th className="col-mobile">MOBILE 2</th>
+                  <th className="col-address">ADDRESS</th>
+                  <th className="col-designation">DESIGNATION</th>
+                  <th className="col-salary">BASIC SALARY</th>
+                  <th className="col-salary">DAILY SALARY</th>
+                  <th className="col-salary">BUDGET ALLOWANCE</th>
+                  <th className="col-salary">INCENTIVE</th>
+                  <th className="col-salary">SPECIAL INCENTIVE</th>
+                  <th className="col-salary">SERVICE</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredEmployees.length > 0 ? (
+                  filteredEmployees.map((employee) => (
+                    <tr key={employee.id}>
+                      <td className="col-emp-no">{employee.empNo || '-'}</td>
+                      <td className="col-epf-no">{employee.epfNumber || '-'}</td>
+                      <td className="col-display-name">{employee.displayName || '-'}</td>
+                      <td className="col-name">{employee.firstName || '-'}</td>
+                      <td className="col-name">{employee.middleName || '-'}</td>
+                      <td className="col-name">{employee.lastName || '-'}</td>
+                      <td className="col-nic">{employee.nic || '-'}</td>
+                      <td className="col-mobile">{employee.mobile || '-'}</td>
+                      <td className="col-mobile">{employee.mobile2 || '-'}</td>
+                      <td className="col-address">{employee.address || '-'}</td>
+                      <td className="col-designation">{employee.designation || '-'}</td>
+                      <td className="col-salary">{employee.salaryComponents?.basicSalary || '0.00'}</td>
+                      <td className="col-salary">
+                        {employee.salaryStatus === 'daily'
+                          ? (parseFloat(employee.salaryComponents?.basicSalary || 0) / 30).toFixed(2)
+                          : '0.00'}
                       </td>
+                      <td className="col-salary">{employee.salaryComponents?.budgetAllowance || '0.00'}</td>
+                      <td className="col-salary">{employee.salaryComponents?.incentive || '0.00'}</td>
+                      <td className="col-salary">{employee.salaryComponents?.specialIncentive || '0.00'}</td>
+                      <td className="col-salary">{employee.salaryComponents?.serviceIncentive || '0.00'}</td>
                     </tr>
-                  )}
-                </tbody>
-              </table>
-            </div>
-
-            {/* Static Table Header (Bottom) */}
-            <TableHeader />
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan="17" className="text-center py-5">
+                      <div>
+                        <p className="mb-2">No employees found</p>
+                        <button className="btn btn-primary btn-sm" onClick={handleAddEmployee}>
+                          Add First Employee
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
